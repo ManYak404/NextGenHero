@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     static GameObject[] waypoints = new GameObject [6]; // Array of waypoints for the enemy to follow
     int currentWaypoint; // Current waypoint the enemy is following
     bool isWaypointMovement = true; // Flag to check if waypoint movement is enabled
+    float speed = 4f; // Speed of the enemy
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,7 +54,7 @@ public class Enemy : MonoBehaviour
     {
         // Move towards the current waypoint
         transform.up = waypoints[currentWaypoint].transform.position - transform.position; // Set the enemy's direction towards the next waypoint
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, 0.01f);
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, speed*Time.deltaTime); // Move the enemy towards the waypoint at a constant speed
         // Check if the enemy has reached the current waypoint
         if (Vector3.Distance(transform.position, waypoints[currentWaypoint].transform.position) < 0.05f)
         {
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour
     {
         // Move towards the current waypoint
         transform.up = waypoints[currentWaypoint].transform.position - transform.position; // Set the enemy's direction towards the next waypoint
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, 0.01f);
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, speed*Time.deltaTime); // Move the enemy towards the waypoint at a constant speed
         // Check if the enemy has reached the current waypoint
         if (Vector3.Distance(transform.position, waypoints[currentWaypoint].transform.position) < 0.05f)
         {

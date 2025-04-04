@@ -23,8 +23,8 @@ public class Egg : MonoBehaviour
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
         if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 || viewportPosition.y > 1)
         {
-            Destroy(gameObject); // Destroy the egg if it's out of view
             Manager.Instance.numberOfEggs--; // Decrement the number of eggs in the game manager
+            Destroy(gameObject); // Destroy the egg if it's out of view
         }
     }
 
@@ -32,8 +32,8 @@ public class Egg : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Waypoint"))
         {
-            Destroy(gameObject); // Destroy the egg on collision
             Manager.Instance.numberOfEggs--; // Decrement the number of eggs in the game manager
+            Destroy(gameObject); // Destroy the egg on collision
         }
     }
 }

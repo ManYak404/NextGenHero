@@ -55,6 +55,10 @@ public class Manager : MonoBehaviour
             // Increment the plane count
             planeCount++;
         }
+        if(numberOfEggs<0)
+        {
+            numberOfEggs = 0; // Ensure the number of eggs does not go below zero
+        }
         statsText = "Hero Mode: " + isMouseControl + "     Number of Eggs: " + numberOfEggs + "     Enemy Count: " + planeCount + "     Enemies Destroyed: " + numberOfPlanesDestroyed + "     Sequential Mode: " + isWaypointMovement + "     Waypoints Shown: " + isWaypointShown; // Text to display in the UI
         myLabel.text = statsText; // Update the label text with the current stats
         uiDoc.rootVisualElement.Add(myLabel); // Add the label to the UI document
