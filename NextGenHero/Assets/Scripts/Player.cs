@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI; // Required for UI elements like Slider
 
 public class Player : MonoBehaviour
 {
@@ -9,16 +10,21 @@ public class Player : MonoBehaviour
     float secondsSinceLastFire = 0f; // Time since the last fire action
     float fireRate = 0.2f; // Rate of fire for the egg
     public GameObject eggPrefab; // Prefab for the egg object
-    //Vector3 directionFacing = new Vector3(0, 1, 0); // Direction the player is facing
+    public Slider slider;  // Reference to the UI slider
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        secondsSinceLastFire += Time.deltaTime; // Increment time since last fire
+        float progress = Mathf.Clamp01(secondsSinceLastFire / fireRate); // Calculate progress based on fire rate
+        slider.value = progress; // Update the slider value
+        slider.gameObject.SetActive(secondsSinceLastFire < fireRate); // Show slider only if firing is in progress
         if (Input.GetKeyDown(KeyCode.M))
         {
             SwitchControls(); // Check for control switch input
